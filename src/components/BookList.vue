@@ -2,7 +2,7 @@
     <div>
         <h1>{{title}}</h1>
         <ul>
-            <book-item v-for="book in books" :book="book"></book-item>
+            <book-item v-for="book in books" :book="book" :key='book.id'></book-item>
         </ul>
         <book-form @addBook='appendBook'></book-form>
     </div>
@@ -18,6 +18,7 @@ export default {
     data() {
         return {
             title: 'All Books',
+            states: ['Want to Read', 'Read', 'Reading'],
             books: [
                 {title: 'Self-Reliance', author: 'Ralph Waldo Emerson'},
                 {title: 'American Gods', author: 'Neil Gaiman'},
@@ -30,7 +31,7 @@ export default {
         BookForm,
     },
     methods: {
-        appendBook(){
+        appendBook(bookTitle, bookAuthor){
             this.books.push({ title: bookTitle, author: bookAuthor })
         }
     }
